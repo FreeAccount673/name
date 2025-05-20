@@ -20,18 +20,30 @@ def gameLoop():
     game_over = False
     game_close = False
 
-    x1 = dis_width/2
-    y1 = dis_height/2
-    x1_change = 0
-    y1_change = 0
+    x = dis_width//2
+    y = dis_height//2
+    x_change = 0.5
+    y_change = 0
+
+
 
     while not game_over:
-        dis.fill(white)
-        pygame.display.update()
+        #dis.fill(black)
+        #pygame.display.update()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            x -= x_change
+        elif keys[pygame.K_RIGHT]:
+            x += x_change
+
+        dis.fill(white)
+        pygame.draw.rect(dis, blue, (x, y, 10, 20))
+        pygame.display.update()
 
     pygame.quit()
     quit()
